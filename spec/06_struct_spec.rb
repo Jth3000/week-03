@@ -6,8 +6,8 @@
 # 
 # @see http://en.wikipedia.org/wiki/Batman
 
-Villian = Struct.new :name
-Superhero = Struct.new :name, :origin, :nemesis
+Villian = Struct.new :name, :nemesis
+Superhero = Struct.new :name, :nick_name, :alter_ego, :origin, :nemesis
 AlterEgo = Struct.new :name, :superhero
 
 describe Villian do
@@ -20,7 +20,8 @@ describe Villian do
   # 
   # @see https://www.relishapp.com/rspec/rspec-core/docs/helper-methods/let-and-let
   # 
-  let(:batman) { Superhero.new "Batman", "Gotham City" }
+  let(:batman) { Superhero.new "Batman", "The Caped Crusader", "Bruce Wayne",
+    "Gotham City", "Joker" }
   
   
   #
@@ -29,7 +30,7 @@ describe Villian do
   #
   # @see https://www.relishapp.com/rspec/rspec-core/docs/subject/explicit-subject
   #
-  subject { Villian.new "Joker" }
+  subject { Villian.new "Joker", batman }
   
   
   it "should have the correct name" do
@@ -77,7 +78,8 @@ describe Superhero do
   #
   # @see https://www.relishapp.com/rspec/rspec-core/docs/subject/explicit-subject
   #
-  subject { Superhero.new "Batman", "Gotham City", joker }
+  subject { Superhero.new "Batman", "The Caped Crusader", bruce_wayne, 
+    "Gotham City", joker }
   
   it "should have a name" do
     subject.should respond_to :name
